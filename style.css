@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+
+  background-size: 400% 400%;
+ 
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.login-box {
+  position: relative;
+  width: 400px;
+  background: #f5f5f5;             
+  border-radius: 12px;
+  color: #000000;                   
+  padding: 100px 90px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* sombra discreta */
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Campos de entrada */
+.input-box {
+  position: relative;
+  margin: 20px 0;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 15px;
+  color: #070707;
+  border: none;
+  border-bottom: 1px solid #000000;
+  background: transparent;
+  outline: none;
+}
+/* texto */
+.input-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0px 10;
+  font-size: 20px;
+  color: #000000;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -18px;
+  font-size: 13px;
+  color: #000000; /* sem azul */
+}
+
+/* Opções extras */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: 10px 0 20px;
+  color: #000000;
+}
+
+.remember-forgot a {
+  color: #000000;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.remember-forgot a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Botão */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background: #000000;           /* branco */
+  border: none;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000000;                /* texto preto */
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+.btn:hover {
+  background: #000000;           /* preto */
+  color: #000000;                /* texto branco */
+  border: 1px solid #000000;
+  box-shadow: none;              /* sem neon/glow */
+}
+
+/* Link de registro */
+.register-link {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 15px;
+  color: #000000;
+}
+
+.register-link a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
