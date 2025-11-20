@@ -1,0 +1,6 @@
+    body { padding-bottom: 3rem; }
+    .currency::before { content: "R$ "; color: var(--bs-secondary); }
+    .table input { min-width: 120px; }
+    .badge-dot { height: .6rem; width: .6rem; display: inline-block; border-radius: 50%; margin-right: .35rem; }
+    /* ajuste visual dos gráficos */
+    #barSaldo, #pieTipo { max-height: 320px; }
