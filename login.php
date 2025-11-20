@@ -34,8 +34,7 @@
                     <label><input type="checkbox" id="label"> Lembrar de mim </label><br>
                 </div>
 
-                    <button type="submit" class="btn"
-                        onclick="location.href='Finanças_Residenciais_save2.html'">Entrar</button><br>
+                    <button type="submit" class="btn">Entrar</button><br>
 
                     <div>
                         <center><a href="#">Esqueceu a senha?</a><br><br></center>
@@ -44,7 +43,7 @@
                     <div class="registre-link">
                        <center><h6>Criar conta</h6></center>
                         <br>
-                        <button type="button" class="btn" onclick="location.href='sequencia.html'">Cadastre-se</button>
+                        <button type="button" class="btn" onclick="location.href='cadastrar.php'">Cadastre-se</button>
                     </div>
         </div>
     </div>
@@ -62,10 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     require "conexao.php";
     
-    $usuario = $_POST['usuario'];
+    $usuario = strtoupper($_POST['usuario']);
     $senha   = $_POST['senha'];
     
-    $sql = $con->prepare("SELECT * FROM usuarios WHERE usuario = ?");
+    $sql = $con->prepare("SELECT * FROM pessoa WHERE usuario = ?");
     $sql->bind_param("s", $usuario);
     $sql->execute();
     
@@ -80,15 +79,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['usuario'] = $user['usuario'];
             $_SESSION['cargo']   = $user['cargo'];
             
-            header("Location: Finanças_Residenciais_save2.html");
+           
+            header("Location: resumão/FR_save2.html");
             exit;
             
         } else {
-            echo "<script>alert('Senha incorreta!'); window.location.href='login.html';</script>";
+            echo "<script>
+            alert('Senha incorreta!'); 
+            window.location.href='cadastrar.php';
+            </script>";
         }
         
     } else {
-        echo "<script>alert('Usuário não encontrado!'); window.location.href='login.html';</script>";
+        echo "<script>
+        alert('Usuário não encontrado!'); 
+        window.location.href='cadastrar.php';
+        </script>";
     }
 }
 ?>
