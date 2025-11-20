@@ -45,13 +45,16 @@
                 </div>
 
                 <div class="input-box">
-                    <select name="cargo" required>
-                        <option value="">Selecione um cargo</option>
-                        <option value="usuario">Usuário</option>
-                        <option value="admin">Administrador</option>
-                    </select>
-                </div>
+                    <label for="data">Data de nascimento</label><br>
+                    <input type="date" id="data" name="data" required>
 
+                        <script>
+                             const hoje = new Date().toISOString().split("T")[0];
+                             document.getElementById("data").max = hoje;
+                        </script>
+
+                    
+                </div>
                 <button type="submit" class="btn">Cadastrar</button>
 
                 <div class="registre-link">
@@ -66,14 +69,15 @@
 </html>
 
 <?php
-require "conexao.php";
 
-$nome      = $_POST['nome'];
-$usuario   = $_POST['usuario'];
+require "conexao.php";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$nome      = strtoupper($_POST['nome']);
+$usuario   = strtoupper($_POST['usuario']);
 $email     = $_POST['email'];
 $senha     = $_POST['senha'];
 $confirmar = $_POST['confirmar'];
-$cargo     = $_POST['cargo'];
+$data     = $_POST['data'];
 
 if ($senha !== $confirmar) {
     echo "<script>alert('As senhas não coincidem!'); history.back();</script>";
@@ -82,12 +86,13 @@ if ($senha !== $confirmar) {
 
 $hash = password_hash($senha, PASSWORD_DEFAULT);
 
-$sql = $con->prepare("INSERT INTO usuarios (nome, usuario, email, senha, cargo) VALUES (?, ?, ?, ?, ?)");
-$sql->bind_param("sssss", $nome, $usuario, $email, $hash, $cargo);
+$sql = $con->prepare("INSERT INTO pessoa (nome, usuario, email, senha, dt_nasc) VALUES (?, ?, ?, ?, ?)");
+$sql->bind_param("sssss", $nome, $usuario, $email, $hash, $data);
 
 if ($sql->execute()) {
-    echo "<script>alert('Usuário cadastrado com sucesso!'); window.location.href='login.html';</script>";
+    echo "<script>alert('Usuário cadastrado com sucesso!'); window.location.href='login.php';</script>";
 } else {
     echo "Erro: " . $sql->error;
+}
 }
 ?>
